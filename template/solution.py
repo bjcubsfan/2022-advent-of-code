@@ -1,7 +1,17 @@
 #!/usr/bin/env python
+"""
+Usage: solution.py [options]
+
+Options:
+  -h --help             Show this help message and exit
+  -d --debug            Enable debugging prints.
+"""
 
 from collections import defaultdict
+import logging
 from pprint import pprint
+
+import docopt
 
 
 def part_1(input_data):
@@ -11,12 +21,14 @@ def part_1(input_data):
         line = line.strip()
     return answer
 
+
 def part_2(input_data):
     input_data = input_data.strip()
     answer = None
     for line in input_data.split("\n"):
         line = line.strip()
     return answer
+
 
 def main():
     with open("input") as input_file:
@@ -26,4 +38,7 @@ def main():
 
 
 if __name__ == "__main__":
+    options = docopt.docopt(__doc__)
+    if options["--debug"]:
+        logging.basicConfig(level=logging.DEBUG, format="%(levelname)s: %(message)s")
     main()
