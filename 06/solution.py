@@ -44,7 +44,13 @@ def part_2(input_data):
     answer = None
     for line in input_data.split("\n"):
         line = line.strip()
-    return answer
+        analyzing = deque(maxlen=14)
+        for index, character in enumerate(line):
+            analyzing.append(character)
+            logging.debug(f"{analyzing}")
+            if len(analyzing) == 14:
+                if all_different(analyzing):
+                    return index + 1
 
 
 def main():
