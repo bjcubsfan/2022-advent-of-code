@@ -74,10 +74,60 @@ def part_1(input_data):
 
 
 def part_2(input_data):
+    """Playing rock paper scissors
+    Encrypted guide, first column what opponent plays:
+
+    A - Rock
+    B - Paper
+    C - Scissors
+
+    What I should do:
+
+    X - Lose
+    Y - Draw
+    Z - Win
+    """
     input_data = input_data.strip()
-    answer = None
+    answer = 0
+    them_code = {
+        "A": "Rock",
+        "B": "Paper",
+        "C": "Scissors",
+    }
+    me_code = {
+        "X": "Lose",
+        "Y": "Draw",
+        "Z": "Win",
+    }
     for line in input_data.split("\n"):
         line = line.strip()
+        this_score = 0
+        them, me = line.split()
+        them = them_code[them]
+        me = me_code[me]
+        if me == "Lose":
+            if them == "Rock":
+                this_score = 0 + 3
+            elif them == "Paper":
+                this_score = 0 + 1
+            elif them == "Scissors":
+                this_score = 0 + 2
+        elif me == "Win":
+            if them == "Rock":
+                this_score = 6 + 2
+            elif them == "Paper":
+                this_score = 6 + 3
+            elif them == "Scissors":
+                this_score = 6 + 1
+        elif me == "Draw":
+            if them == "Rock":
+                this_score = 3 + 1
+            elif them == "Paper":
+                this_score = 3 + 2
+            elif them == "Scissors":
+                this_score = 3 + 3
+        answer += this_score
+    logging.debug(this_score)
     return answer
 
 
