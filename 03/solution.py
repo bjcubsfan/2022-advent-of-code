@@ -21,7 +21,7 @@ def part_1(input_data):
     for line in input_data.split("\n"):
         line = line.strip()
         middle = int(len(line) / 2)
-        first_half, second_half = line[0:middle],  line[middle:]
+        first_half, second_half = line[0:middle], line[middle:]
         first_half = set(first_half)
         second_half = set(second_half)
         in_both = first_half & second_half
