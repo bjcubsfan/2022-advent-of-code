@@ -11,8 +11,14 @@ from collections import defaultdict
 import logging
 from pprint import pprint
 import string
+import itertools
 
 import docopt
+
+
+def grouper(iterable, n):
+    for i in range(0, len(iterable), n):
+        yield iterable[i : i + n]
 
 
 def part_1(input_data):
@@ -32,9 +38,20 @@ def part_1(input_data):
 
 def part_2(input_data):
     input_data = input_data.strip()
-    answer = None
+    answer = 0
+    all_lines = []
     for line in input_data.split("\n"):
         line = line.strip()
+        all_lines.append(line)
+    logging.debug(f"{list(grouper(all_lines, 3))}")
+    for group in grouper(all_lines, 3):
+        first, second, third = group
+        first = set(first)
+        second = set(second)
+        third = set(third)
+        in_all = first & second & third
+        assert len(in_all) == 1
+        answer += string.ascii_letters.index(in_all.pop()) + 1
     return answer
 
 
